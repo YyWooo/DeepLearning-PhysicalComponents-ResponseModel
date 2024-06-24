@@ -1,0 +1,109 @@
+; Top Design: "wireless_communication_lib:nonlinear_circuit:schematic"
+; Netlisted using Hierarchy Policy: "Standard"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="wireless_communication_lib:nonlinear_circuit:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+R:R3  N__7 0 R=1 kOhm Noise=yes 
+C:C3  v1 N__4 C=100 pF 
+"JFETM1":JFET1  vi N__8 v1 Temp=25 Trise=25 Mode=1 Noise=yes 
+Tran:Tran1 StartTime=0.0 nsec StopTime=1.98 sec MaxTimeStep=20 msec MinTimeStep=20 msec LimitStepForTL=yes \
+TimeStepControl=0 TruncTol=7.0 ChargeTol=1.0e-14 IntegMethod=0 MaxGearOrder=2 \
+Mu=0.5 MaxOrder=4 Freq[1]=1.0 GHz Order[1]=3 HB_Window=no \
+HB_Sol=no ImpApprox=no ShortTL_Delay=1.0 psec ImpMode=1 UseInitCond=no \
+LoadGminDC=no CheckKCL=yes CheckOnlyDeltaV=yes OverloadAlert=no DeviceBypass=no \
+MaxIters=10 MaxItersDC=200 DevOpPtLevel=0 StatusLevel=2 OutputAllPoints=yes \
+NoiseScale=10 ImpEnforcePassivity=yes ImpSkipTotalEnergy=1000 ImpLFEOn=yes \
+OutputPlan="Tran1_Output" 
+
+OutputPlan:Tran1_Output \
+      Type="Output" \
+      UseNodeNestLevel=yes \
+      NodeNestLevel=2 \
+      NodeName[1]="v1" \
+      NodeName[2]="v2" \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2 \
+      UseDeviceCurrentNestLevel=yes \
+      DeviceCurrentNestLevel=0 \
+      DeviceCurrentDeviceType="All" \
+      DeviceCurrentSymSyntax=yes \
+      UseCurrentNestLevel=yes \
+      CurrentNestLevel=999 \
+      UseDeviceVoltageNestLevel=no \
+      DeviceVoltageNestLevel=0 \
+      DeviceVoltageDeviceType="All"
+
+C:C2  vi N__8 C=100 pF Temp=25 Trise=25 
+model JFETM1 JFET NFET=1 PFET=0 Gdsnoise=no 
+L:L1  v1 N__7 L=4.7 mH Noise=yes  
+"JFETM1":JFET2  v1 N__4 v2 Temp=25 Trise=25 Mode=1 Noise=yes 
+L:L2  v2 N__9 L=4.7 mH Noise=yes  
+
+#load "python","BatchSim"
+Controller:BatchSim1 Module="BatchSim"  \ 
+Analysis[1]="Tran1" \ 
+UseSweepPlan=yes  \ 
+SweepVar[1]="DataFileList2" SweepPlan[1]="BatchSim1_seg1"  \ 
+UseSeparateProcess=no \ 
+MergeDatasets=yes  \ 
+RemoveDatasets=no 
+
+SweepPlan:BatchSim1_seg1 Start=1 Stop=50 Step=1.0 
+R:R4  N__9 0 R=1 kOhm Noise=yes 
+#uselib "ckt" , "VtDataset"
+VtDataset:SRC1  vi 0 Dataset=vi Expression="voltage" Freq=0 GHz Gain=1.0 Vdc=0 V Interpolation="linear" SaveCurrent=1 
+
+vi=DataFileList2.FileName
+#uselib "ckt" , "DataFileList"
+DataFileList:DataFileList2 _List=list( \ 
+"D:/Projects/ads/ds_data_unformat/_0.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_1.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_2.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_3.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_4.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_5.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_6.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_7.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_8.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_9.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_10.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_11.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_12.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_13.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_14.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_15.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_16.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_17.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_18.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_19.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_20.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_21.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_22.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_23.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_24.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_25.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_26.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_27.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_28.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_29.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_30.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_31.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_32.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_33.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_34.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_35.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_36.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_37.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_38.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_39.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_40.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_41.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_42.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_43.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_44.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_45.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_46.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_47.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_48.ds", \ 
+"D:/Projects/ads/ds_data_unformat/_49.ds") Index=1
