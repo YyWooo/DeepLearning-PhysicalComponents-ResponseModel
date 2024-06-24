@@ -37,7 +37,7 @@ Two waveforms are used as the test set in this project. Similar to the training 
 ## Deep Learning Network
 The network architecture utilized in this project is a combination of a Convolutional Neural Network (CNN) and a Fully Connected Network (FCN). The input dimension is 100, and the output dimension is also 100.
 
-![Network Architecture](misc/Network%20Architecture)
+![Network Architecture](misc/Network%20Architecture.png)
 
 ## Result
 ![Result1](misc/result1.png)
