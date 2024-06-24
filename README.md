@@ -18,20 +18,26 @@ convert_txt_ds.ipynb
 ### Train Set
 We employ five distinct waveforms as our model's training set. To ensure the robustness and variability of our training data, we generate 50 examples of each waveform with random variations. Each waveform's amplitude is constrained between -3 and 3, while the frequency ranges from 0 to 2. Sampling each waveform with 100 sampled points as train data.
 
-![Sine Waveform]()
-![Cosine Waveform]()
-![Increase Exponential Waveform]()
-![Decrease Exponential Waveform]()
-![Combined Waveform]()
+![Sine Waveform](misc/Sine Waveform.png)
+![Cosine Waveform](misc/Cosine Waveform.png)
+![Increase Exponential Waveform](misc/Inc Expo Waveform.png)
+![Decrease Exponential Waveform](misc/Dec Expo Waveform.png)
+![Combined Waveform](misc/Combined Waveform.png)
 
 ### Test Set
 Two waveforms are used as the test set in this project. Similar to the training set, 50 examples of each test waveform are generated with random variations. The amplitude of each waveform is constrained between -3 and 3, and the frequency ranges from 3 to 4. Sampling each waveform with 100 sampled points as test data.
 
-![Sine and Cosine multiplied with Exponential Waveform]()
+![Sine and Cosine multiplied with Exponential Waveform](misc/testset.png)
 
 ## Deep Learning Network
 The network architecture utilized in this project is a combination of a Convolutional Neural Network (CNN) and a Fully Connected Network (FCN). The input dimension is 100, and the output dimension is also 100.
 
-![Network Architecture]()
+![Network Architecture](misc/Network Architecture)
 
 ## Result
+![Result1](misc/result1.png)
+![Result2](misc/result2.png)
+![Result3](misc/result3.png)
+![Result4](misc/result4.png)
+![Result5](misc/result5.png)
+![CDF of result](misc/CDF.png)
